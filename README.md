@@ -27,7 +27,6 @@ To receive data from this microservice, follow these steps in order:
 |                                                  	| 3. Orders tasks          	|
 | 4. Wait until `status.txt` contains `done`       	|                          	|
 | 5. Read in list of ordered tasks from `pipe.txt` 	|                          	|
-|
 
 ## UML Sequence Diagram
 
@@ -36,32 +35,29 @@ To receive data from this microservice, follow these steps in order:
 ### Format of Requests
 This microservice expects an array of JSON objects to be  inserted into `pipe.txt`. Each object should represent a task. The array can be all in one line, or formatted in other ways like the example below. 
 
-Each JSON object can have any fields necessary to the task manager software using this microservice. The only requirement is that each task object has a `do` field which represents when to <strong>do</strong> the task.
-- The `do` field must be the string representation of a JavaScript `Date` object.
+Each JSON object can have any attributes necessary to the task manager software using this microservice. The only requirement is that each task object has a `do` attribute which represents when to <strong>do</strong> the task.
+- The `do` attribute must be the string representation of a JavaScript `Date` object.
   - For more information on this format, see the MDN documentation [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format).
 
-See the example JSON array below for an example of the data to be written into `pipe.txt` for ordering.
+Below is an example of the format of the unordered tasks to be written to `pipe.txt`. Any number of tasks can be written to `pipe.txt`, and tasks can have additional attributes other than `do`.
 ```json
-//Example format this microservice expects to be written to pipe.txt
 [
-    {
-        //any other fields
-        "do": "YYYY-MM-DD",
-        //any other fields
+    {        
+        "do": "YYYY-MM-DD",        
     },
-    {
-        //any other fields
-        "do": "YYYY-MM-DD",
-        //any other fields
+    {        
+        "do": "YYYY-MM-DD",        
     },
-    //more task objects...
+    {        
+        "do": "YYYY-MM-DD",        
+    }
 ]
 ```
 
 ### Format of Responses
 Once this microservice has ordered the tasks, it will write the ordered tasks back to `pipe.txt`. The tasks will once again be in the format of a JSON array, with each object representing a task.
 
-The ordered tasks will be in one line in `pipe.txt`, and an example is as follows, with other fields and tasks as necessary:
+The ordered tasks will be in one line in `pipe.txt`, and an example is as follows, with other attributes and tasks as necessary:
 ```json
-[{"do": "YYYY-MM-DD"},{"do": "YYYY-MM-DD"},{"do": "YYYY-MM-DD"}...]
+[{"do": "YYYY-MM-DD"},{"do": "YYYY-MM-DD"},{"do": "YYYY-MM-DD"}]
 ```
