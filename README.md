@@ -8,7 +8,7 @@ This is a script that sorts tasks. I created this as a mircoservice for my parte
 ## Requesting Data
 To request data from this microservice, follow these steps in order:
 1. Ensure that this microservice is running.
-2. Write the unordered tasks to `pipe.txt` using [this](#format-of-requests) format.
+2. Write the unordered tasks to `pipe.txt` using this [request format](#format-of-requests).
 3. Write `ready` to `status.txt`.
 
 This is a successful call. From here, the mircorservice will read in the tasks from `pipe.txt` and order them.
@@ -17,7 +17,7 @@ This is a successful call. From here, the mircorservice will read in the tasks f
 To receive data from this microservice, follow these steps in order:
 1. Make a request following the [steps above](#requesting-data).
 2. Wait until `status.txt` contains `done`.
-3. Read in the ordered tasks from `pipe.txt`, which are in [this](#format-of-responses) format.
+3. Read in the ordered tasks from `pipe.txt`, which are in this [response format](#format-of-responses).
 
 ## Example Call and Request Timeline
 | Task Manager Software                            	| Task-Sorter Microservice 	|
@@ -29,6 +29,7 @@ To receive data from this microservice, follow these steps in order:
 | 5. Read in list of ordered tasks from `pipe.txt` 	|                          	|
 
 ## UML Sequence Diagram
+![UML Sequence Diagram](./imgs/UML_Sequence.png)
 
 ## Task Data Format
 
