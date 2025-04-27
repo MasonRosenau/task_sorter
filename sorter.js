@@ -7,6 +7,7 @@ const pipePath = path.join(__dirname, 'pipe.txt');
 
 while(true){
     //wait for status.txt to contain "ready"
+    console.log("Waiting for status.txt to contain \"ready\"...");
     let status = fs.readFileSync(statusPath, 'utf8');
     while(status != "ready"){
         status = fs.readFileSync(statusPath, 'utf8');
@@ -18,7 +19,7 @@ while(true){
     let tasks = JSON.parse(pipe); //JSONify tasks
     
     //print tasks received
-    console.log("Tasks obtained from pipe.txt:\n", tasks)
+    console.log("Unsorted tasks received!");
     
     //function to sort tasks by "do" field
     function sortByDate(a, b) {
@@ -28,11 +29,12 @@ while(true){
     }
     
     //sort tasks
+    console.log("Sorting tasks!");
     tasks.sort(sortByDate);
 
     //print sorted tasks
-    console.log("Sorted tasks by \"do\":\n", tasks)
-    console.log("Writing sorted tasks to pipe.txt and \"done\" to status.txt...")
+    console.log("Writing sorted tasks to pipe.txt...");
+    console.log("Writing \"done\" to status.txt...");
 
     //write sorted tasks to pipe.txt
     fs.writeFileSync(pipePath, JSON.stringify(tasks));
